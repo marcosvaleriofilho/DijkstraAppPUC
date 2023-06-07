@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "468634773113",
+    "project_id": "dijkstraapppuc",
+    "storage_bucket": "dijkstraapppuc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:468634773113:android:cb00ba9500180a129156a8",
+        "android_client_info": {
+          "package_name": "com.example.dijkstraapppuc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "468634773113-d4llgujptt0rb6d54b9ea5e0m821jfkv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNrnXRkhstAKfYtWdVjOCXPtulW-cROoM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "468634773113-d4llgujptt0rb6d54b9ea5e0m821jfkv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
