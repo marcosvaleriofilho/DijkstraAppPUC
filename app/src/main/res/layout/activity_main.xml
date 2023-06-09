@@ -1,39 +1,96 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="15dp"
-    android:gravity="center"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/etOrigem"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Prédio de partida"
-        android:textSize="15sp"/>
+    <ImageView
+        android:id="@+id/ivMapaPuc"
+        android:layout_width="match_parent"
+        android:layout_height="410dp"
+        android:src="@drawable/mapapuc"
+        android:layout_centerHorizontal="true"
+        />
 
-    <EditText
-        android:id="@+id/etDestino"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:hint="Prédio de destino"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"/>
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="370dp"
+        app:cardCornerRadius="20dp">
 
-    <Button
-        android:id="@+id/btnCalcular"
-        android:layout_width="150dp"
-        android:layout_height="wrap_content"
-        android:text="Calcular"
-        android:layout_marginTop="25dp"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tvResultado"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        android:textSize="15sp"/>
+            <ImageView
+                android:id="@+id/ivIconePuc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/iconepuc"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"/>
 
-</LinearLayout>
+            <TextView
+                android:id="@+id/tvTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="PUC-CAMPINAS"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="0dp"
+                android:textStyle="bold"
+                android:textSize="12sp"
+                android:textColor="@color/bluePUC"
+                android:layout_below="@id/ivIconePuc"
+                />
+
+            <EditText
+                android:id="@+id/etOrigem"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Prédio de partida"
+                android:textAlignment="center"
+                android:textSize="15sp"
+                android:layout_below="@+id/tvTitulo"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/etDestino"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:hint="Prédio de destino"
+                android:layout_marginTop="10dp"
+                android:textSize="15sp"
+                android:layout_below="@id/etOrigem"
+                android:layout_centerHorizontal="true"
+                android:textAlignment="center"/>
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/btnCalcular"
+                android:layout_width="150dp"
+                android:layout_height="40dp"
+                android:text="Calcular"
+                android:textSize="15sp"
+                android:textColor="@color/white"
+                android:layout_marginTop="25dp"
+                android:layout_below="@id/etDestino"
+                android:layout_centerHorizontal="true"
+                android:backgroundTint="@color/bluePUC"/>
+
+            <TextView
+                android:id="@+id/tvResultado"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:textSize="15sp"
+                android:layout_below="@id/btnCalcular"
+                android:layout_centerHorizontal="true" />
+
+        </RelativeLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+
+
+</RelativeLayout>

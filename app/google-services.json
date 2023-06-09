@@ -1,33 +1,33 @@
 {
   "project_info": {
-    "project_number": "468634773113",
-    "project_id": "dijkstraapppuc",
-    "storage_bucket": "dijkstraapppuc.appspot.com"
+    "project_number": "820192114061",
+    "project_id": "dijstrkaapp",
+    "storage_bucket": "dijstrkaapp.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:468634773113:android:cb00ba9500180a129156a8",
+        "mobilesdk_app_id": "1:820192114061:android:2f70804bcee61d9700b9c4",
         "android_client_info": {
           "package_name": "com.example.dijkstraapppuc"
         }
       },
       "oauth_client": [
         {
-          "client_id": "468634773113-d4llgujptt0rb6d54b9ea5e0m821jfkv.apps.googleusercontent.com",
+          "client_id": "820192114061-q8fm5m9731oh9s7poro55uie7elqmr4o.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyBNrnXRkhstAKfYtWdVjOCXPtulW-cROoM"
+          "current_key": "AIzaSyBitA1YDasM9N5l91LcOO5OafysO5f50Vs"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "468634773113-d4llgujptt0rb6d54b9ea5e0m821jfkv.apps.googleusercontent.com",
+              "client_id": "820192114061-q8fm5m9731oh9s7poro55uie7elqmr4o.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
