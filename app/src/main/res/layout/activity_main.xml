@@ -87,6 +87,15 @@
                 android:layout_below="@id/btnCalcular"
                 android:layout_centerHorizontal="true" />
 
+            <TextView
+                android:id="@+id/tvCaminho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tvResultado"
+                android:layout_centerHorizontal="true"
+                android:textSize="15sp"
+                android:layout_marginTop="15dp"/>
+
         </RelativeLayout>
 
     </com.google.android.material.card.MaterialCardView>

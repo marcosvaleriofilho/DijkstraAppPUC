@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
             //tratamento para caso o usuário não digite corretamente os campos
             if(origin != "" && destination!= ""){
-                calculateSmallestWay(origin!!, destination!!)
+                dijkstra(origin!!, destination!!)
             } else {
                 Toast.makeText(this,"Preencha os campos corretamente",Toast.LENGTH_LONG).show()
             }
@@ -42,18 +42,14 @@ class MainActivity : AppCompatActivity() {
                 //iterando sobre cada documento na coleção
                 for( doc in collection.documents){
                     val data = doc.data
-                    //Log.d("DocData",data.toString())
                     if(data != null){
                         //incializando um novo hashMap sempre que iterar sobre um novo documento
                         val neighborMap: HashMap<String, Number> = HashMap()
-
                         //iterando sobre cada campo no documento
                         for ((neighbor, value) in data) {
                             neighborMap["${neighbor as String}"] = value as Number
-                            //Log.d("NeighBorMap",neighborMap.toString())
                         }
                         buildMap["${doc.id}"] = neighborMap
-                        //Log.d("BuildMap",buildMap.toString())
                     }
                 }
             }
@@ -92,14 +88,29 @@ class MainActivity : AppCompatActivity() {
             distances[neighbor] = value.toDouble()
         }
         distances[origin] = 0 //ou tirar o origin da lista de distances
-        Log.d("DistancesList",distances.toString())
     }
 
-    private fun calculateSmallestWay(origin: String, destination: String)
+    //usando recursão para busca profunda
+    private fun printPath(path: HashMap<String,String>, destination: String,pathList: MutableList<String>): MutableList<String>{
+        var node: String = destination
+        pathList.add(node)
+        //só pode ter um destino e uma origem
+        if(path.containsKey(node)) {
+            node = path[node]!!
+            printPath(path, node, pathList)
+        }
+        return  pathList.asReversed()
+    }
+
+
+    private fun dijkstra(origin: String, destination: String)
     {
         var processed: MutableList<String> = mutableListOf() //lista de já processados
         var queue: MutableList<String> = mutableListOf(origin) //inicializando a lista com a origem
         var distances: HashMap<String, Number> = HashMap()
+        var path: HashMap<String, String> = HashMap()
+        var pathList: MutableList<String> = mutableListOf()
+        var stringPath: String = ""
 
         getMap(){graphRef ->
             if(graphRef.containsKey(origin) && graphRef.containsKey(destination)){
@@ -109,6 +120,11 @@ class MainActivity : AppCompatActivity() {
                 //inicializando o HashMap distances de acordo com o origin
                 inicializeDistances(origin, distances, graphRef)
 
+                //inicializando a tabela path
+                for(adj in graphRef[origin]!!.keys){
+                    path[adj] = origin
+                }
+
                 //adicionando os adjacentes da origem na lista de não verificados
                 for (x in graphRef[origin]!!.keys){
                     queue.add(x)
@@ -117,33 +133,42 @@ class MainActivity : AppCompatActivity() {
                 node = findSmallestDistance(distances,processed)
                 while(queue.isNotEmpty()){
                     var cost = distances[node]!!.toDouble()
-                    //Log.d("cost","${node}: ${cost}")
                     for((key, value) in graphRef[node]!!){
                         var newcost = cost + value.toDouble()
-                        /*Log.d("Value",value.toString())
-                        Log.d("DistanceKey","${key}: ${distances[key].toString()}")
-                        Log.d("NewCost",newcost.toString())*/
                         if(distances.containsKey(key)){
                             if(distances[key]!!.toDouble() > newcost)
                             {
                                 distances[key] = newcost
-                                //Log.d("DistanceNewValue","${key}: ${distances[key].toString()}")
+                                path[key] = node
                                 if(key !in processed && key !in queue){
                                     queue.add(key)
                                 }
+                            } else if (distances[key]!!.toDouble() == newcost){
+                                //aqui seria para caminhos alternativos com tempo igual
                             }
                         }
                     }
                     queue.remove(node)
-                    //Log.d("Queue",queue.toString())
                     processed.add(node) //adiciona o node na lista de processados
-                    //Log.d("Processed",processed.toString())
                     node = findSmallestDistance(distances, processed)
+                }
+
+                pathList = printPath(path, destination,pathList) //lista do caminho
+                //printar caminho
+                for (node in pathList)
+                {
+                    if (node == destination){
+                        stringPath =  stringPath + node
+                        break
+                    } else {
+                        stringPath = stringPath + node + " -> "
+                    }
                 }
 
                 val result = distances[destination]!!.toDouble() //resultado final
                 runOnUiThread{
                     binding.tvResultado.setText("Tempo do percurso:$result min")
+                    binding.tvCaminho.setText("Caminho: $stringPath")
                 }
             } else {
                 Toast.makeText(this,"Por favor, verifique a existência dos prédios digitados.",Toast.LENGTH_LONG).show()
